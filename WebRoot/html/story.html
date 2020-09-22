@@ -76,6 +76,7 @@
 			
 			$.ajax({
 				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+				dataType: "jsonp",
 				data: {
 					kind:"中外神话",
 					currentPage: 1,
@@ -112,6 +113,7 @@
 		function shenhuaClick() {
 			$.ajax({
 				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+				dataType: "jsonp",
 				data: {
 					kind:"中外神话",
 					currentPage: 1,
@@ -137,6 +139,7 @@
 			if (currentPage < pageCount) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					dataType: "jsonp",
 					data: {
 						kind:"中外神话",
 						currentPage: currentPage,
@@ -157,6 +160,7 @@
 			else if (currentPage == pageCount) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+						dataType: "jsonp",
 						data: {
 							kind:"中外神话",
 							currentPage: currentPage,
@@ -187,6 +191,7 @@
 			if (currentPage > 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					dataType: "jsonp",
 					data: {
 						kind:"中外神话",
 						currentPage: currentPage,
@@ -207,6 +212,7 @@
 			else if (currentPage == 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					dataType: "jsonp",
 					data: {
 						kind:"中外神话",
 						currentPage: currentPage,
