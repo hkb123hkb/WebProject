@@ -48,7 +48,7 @@
 		     //alert(id);
 		     $.ajax({
 		            type: "post",
-		            dataType: "json",
+		            dataType: "jsonp",
 		            url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/getStory",
 		            data: {
 		                id: id
@@ -57,28 +57,11 @@
 		            success: function(data) {
 		                if (null != data) {
 		                    var data = JSON.parse(data);
-		                    //alert(data.rows.length); 
-		                    // alert(data.rows.id + data.rows.image + data.rows.pageNum 
-		                            // + data.rows.info.title + data.rows.info.cover);
-		                            
-		                    // var oContent = document.querySelector("#article");
-								$("#article").empty();
-								$("#article").append("<div class='art-left'><img src='https://hkb2020aly.xyz/ssh.hkb.sqgs/images/" +
-		                    			data.image + "'><p>"+
-		                    			data.title + "</p></div><div class='art-right'><p>"+ 
-		                    			data.story + "</p></div>");
-								//alert(data.image +data.title + data.story )
-		                    	// var str = "";
-		                    	// for (let i = 0; i < data.rows.length; i++) {
-		                    	// 	str += "<div class='art-left'><img src='https://hkb2020aly.xyz/ssh.hkb.sqgs/images/" +
-		                    	// 		data.image + "'><p>"+
-		                    	// 		data.title + "</p></div><div class='art-right'><p>"+ 
-		                    	// 		data.story + "</p></div>";
-		                    	// }
-		                    	// $("#article").empty();
-		                    	// oContent.innerHTML = str;
-		                    	// console.log(str)
-		                    
+				    $("#article").empty();
+				    $("#article").append("<div class='art-left'><img src='https://hkb2020aly.xyz/ssh.hkb.sqgs/images/" +
+		                    	data.image + "'><p>"+
+		                    	data.title + "</p></div><div class='art-right'><p>"+ 
+		                    	data.story + "</p></div>");
 		                }
 		            },
 		            error: function(xhr, type, errorThrown) {
@@ -90,6 +73,5 @@
 	</script>
 	
 	<script src="../js/bootstrap.min.js"></script>
-	<!-- <script src="../js/util.js" type="module"></script> -->
 </body>
 </html>
