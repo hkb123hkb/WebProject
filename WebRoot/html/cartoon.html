@@ -114,6 +114,7 @@
 			
 			$.ajax({
 				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonInfo",
+				dataType: "jsonp",
 				data: {
 					currentPage: 1,
 					pageSize: 8,
@@ -155,6 +156,7 @@
 			if (currentPage < pageCount) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonInfo",
+					dataType: "jsonp",
 					data: {
 						currentPage: currentPage,
 						pageSize: 8,
@@ -174,6 +176,7 @@
 			else if (currentPage == pageCount) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonInfo",
+						dataType: "jsonp",
 						data: {
 							currentPage: currentPage,
 							pageSize: 8,
@@ -203,6 +206,7 @@
 			if (currentPage > 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonInfo",
+					dataType: "jsonp",
 					data: {
 						currentPage: currentPage,
 						pageSize: 8,
@@ -222,6 +226,7 @@
 			else if (currentPage == 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonInfo",
+					dataType: "jsonp",
 					data: {
 						currentPage: currentPage,
 						pageSize: 8,
