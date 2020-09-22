@@ -37,7 +37,7 @@
 
 	<section class="kindcon-bj">
 		<div class="cartoonImage">
-			<!-- <div class="art-left">
+			<div class="art-left">
 				<img src="../images/a2.jpg">
 				<p>
 					精卫填海<br>
@@ -48,7 +48,7 @@
 				<img src= "../images/1.jpg">
 				<img src= "../images/1.jpg">
 				<img src= "../images/1.jpg">
-			</div> -->
+			</div> 
 			
 			<div class="cartoonImage-tit">
 				<span id="title"></span>
@@ -68,7 +68,7 @@
 			
 			$.ajax({
 				type: "post",
-				dataType: "json",
+				dataType: "jsonp",
 				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
 				data: {
 					infoId:infoId,
@@ -110,6 +110,7 @@
 			if (currentPage < pageCount) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+					dataType: "jsonp",
 					data: {
 						infoId:infoId,
 						currentPage: currentPage,
@@ -130,6 +131,7 @@
 			else if (currentPage == pageCount) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+						dataType: "jsonp",
 						data: {
 							infoId:infoId,
 							currentPage: currentPage,
@@ -160,6 +162,7 @@
 			if (currentPage > 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+					dataType: "jsonp",
 					data: {
 						infoId:infoId,
 						currentPage: currentPage,
@@ -180,6 +183,7 @@
 			else if (currentPage == 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+					dataType: "jsonp",
 					data: {
 						infoId:infoId,
 						currentPage: currentPage,
