@@ -11,7 +11,6 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light white" >
 		<div class="nav-container">
-			<!-- <a class="navbar-brand" href="#"> --><img src="../images/logo.png" width="80" height="80"><!-- </a> -->
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -75,6 +74,7 @@
 			
 			$.ajax({
 				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+				dataType: "jsonp",
 				data: {
 					kind:"百鬼夜行",
 					currentPage: 1,
@@ -114,6 +114,7 @@
 			if (currentPage < pageCount) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					dataType: "jsonp",
 					data: {
 						kind:"百鬼夜行",
 						currentPage: currentPage,
@@ -134,6 +135,7 @@
 			else if (currentPage == pageCount) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+						dataType: "jsonp",
 						data: {
 							kind:"百鬼夜行",
 							currentPage: currentPage,
@@ -163,6 +165,7 @@
 			if (currentPage > 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					dataType: "jsonp",
 					data: {
 						kind:"百鬼夜行",
 						currentPage: currentPage,
@@ -183,6 +186,7 @@
 			else if (currentPage == 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					dataType: "jsonp",
 					data: {
 						kind:"百鬼夜行",
 						currentPage: currentPage,
@@ -231,6 +235,5 @@
 	</script>
 
 	<script src="../js/bootstrap.min.js"></script>
-	<!-- <script src="../js/util.js" type="module"></script> -->
 </body>
 </html>
