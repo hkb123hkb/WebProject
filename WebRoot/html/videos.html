@@ -37,7 +37,7 @@
 
 	<section class="VIDEOSa">
 		<div id="videos" class="change">
-			<!--<div class="vidcont">
+			<div class="vidcont">
 				<div class="vid">
 					<div class="video">
 						<div class="videolist l"></div>
@@ -60,7 +60,7 @@
 					<p class="title"></p>
 					<p class="text"></p>
 				</div>
-			</div>	-->	
+			</div>
 		</div>
 		<div id="fanye"></div>
 		<script type="text/javascript">
@@ -78,6 +78,7 @@
 			window.onload = function() {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+					dataType: "jsonp",
 					data: {
 						currentPage: 1,
 						pageSize: 3,
@@ -129,6 +130,7 @@
 				if (currentPage < pageCount) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+						dataType: "jsonp",
 						data: {
 							currentPage: currentPage,
 							pageSize: 3,
@@ -148,6 +150,7 @@
 				else if (currentPage == pageCount) {
 						$.ajax({
 							url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+							dataType: "jsonp",
 							data: {
 								currentPage: currentPage,
 								pageSize: 3,
@@ -177,6 +180,7 @@
 				if (currentPage > 1) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+						dataType: "jsonp",
 						data: {
 							currentPage: currentPage,
 							pageSize: 3,
@@ -196,6 +200,7 @@
 				else if (currentPage == 1) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+						dataType: "jsonp",
 						data: {
 							currentPage: currentPage,
 							pageSize: 3,
