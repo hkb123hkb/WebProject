@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>文章</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/story.css">
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light white" >
+		<div class="nav-container">
+			<!-- <a class="navbar-brand" href="#"> --><img src="../images/logo.png" width="80" height="80"><!-- </a> -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			<div class="collapse navbar-collapse fl-r" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a href="index.html">首页<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="link" href="story.html">文章</a>
+					</li>
+					<li class="nav-item">
+						<a href="cartoon.html">漫画</a>
+					</li>
+					<li class="nav-item">
+						<a href="videos.html">视频</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section class="kindcon-bj">
+		<div class="cont">
+			<div class="cont-left">
+				<!-- <h1>个人管理中心</h1> -->
+				<dl class="drop">
+					<!-- <dt><a href="#">分类</a></dt> -->
+					<dd>
+						<a href="story.html" class="shenhua"></a>
+					</dd>
+					<dd>
+						<a href="chuanshuo.html" class="chuanshuo1"></a>
+					</dd>
+					<dd>
+						<a href="baigui.html" class="baigui"></a>
+					</dd>
+				</dl>
+			</div> 
+			<div class="cont-right">
+				<div class="sousuo">
+					<input type="text" name="">
+					<button>搜索</button>
+				</div>
+				<div class="change"  id="shenhua" style="display: none;">
+				</div>
+				<div class="change"  id="chuanshuo" >
+				</div>
+				<div class="change"  id="baigui" style="display: none;">
+				</div>
+			</div>
+			<div id="fanye"></div>
+		</div>
+</section>
+	<script type="text/javascript">
+		var currentPage;
+		var pageCount;
+		
+		window.onload = function() {
+			
+			$.ajax({
+				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+				data: {
+					kind:"民间传说",
+					currentPage: 1,
+					pageSize: 6
+				},
+				success: function(data) {
+					
+					var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+					// console.log(doc);
+					currentPage = data.currentPage;
+					pageCount = data.pageCount;
+					$("#fanye").empty();
+					$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+						"<span onclick='changePageupdown()' class='page'>></span>");
+					renderData(data);
+				}
+			});
+		}
+		
+		var oContent = document.querySelector("#chuanshuo");
+		function renderData(data) {
+			var str = "";
+			for (let i = 0; i < data.rows.length; i++) {
+				str += "<div class='cont-row'><div class='detail'><a href='article.html?" 
+					+ data.rows[i].id + "'><img src='https://hkb2020aly.xyz/ssh.hkb.sqgs/images/" +
+					data.rows[i].image + "'></a></div></div>";
+			}
+			$("#chuanshuo").empty();
+			oContent.innerHTML = str;
+			// console.log(str)
+		}
+		
+		function changePageupdown() {
+			currentPage = currentPage + 1;
+			// alert(pageCount);
+			if (currentPage < pageCount) {
+				$.ajax({
+					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					data: {
+						kind:"民间传说",
+						currentPage: currentPage,
+						pageSize: 6,
+					},
+					success: function(data) {
+						var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+						// console.log(doc);
+						currentPage = data.currentPage;
+						$("#fanye").empty();
+						$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+							"<span onclick='changePageupdown()' class='page next'>></span>");
+						renderData(data);
+					}
+				});	
+			}
+			else if (currentPage == pageCount) {
+					$.ajax({
+						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+						data: {
+							kind:"民间传说",
+							currentPage: currentPage,
+							pageSize: 6,
+						},
+						success: function(data) {
+							var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+							// console.log(doc);
+							currentPage = data.currentPage;
+							$("#fanye").empty();
+							$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+							currentPage +"</span>"+
+								"<span onclick='changePageupdown()' class='page forbid'>></span>");
+							renderData(data);
+						},
+					});
+			}
+			else{
+				currentPage = currentPage - 1;
+				return;
+			}
+		}
+	
+		function changePageup() {
+			currentPage = currentPage - 1;
+			// alert(currentPage);
+			if (currentPage > 1) {
+				$.ajax({
+					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					data: {
+						kind:"民间传说",
+						currentPage: currentPage,
+						pageSize: 6,
+					},
+					success: function(data) {
+						var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+						// console.log(doc);
+						currentPage = data.currentPage;
+						$("#fanye").empty();
+						$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+							"<span onclick='changePageupdown()' class='page'>></span>");
+						renderData(data);
+					}
+				});
+			}
+			else if (currentPage == 1) {
+				$.ajax({
+					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
+					data: {
+						kind:"民间传说",
+						currentPage: currentPage,
+						pageSize: 6,
+					},
+					success: function(data) {
+						var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+						// console.log(doc);
+						currentPage = data.currentPage;
+						$("#fanye").empty();
+						$('#fanye').append("<span onclick='changePageup()' class='page forbid'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+							"<span onclick='changePageupdown()' class='page'>></span>");
+						renderData(data);
+					}
+				});
+			}
+			else{
+				currentPage = currentPage + 1;
+				return;
+			}
+		}
+	
+	</script>
+	
+	
+	<script type="text/javascript">
+		$(function(){
+			$('.drop dd a.shenhua').click(function(){
+				$(".drop dd a.shenhua").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn1.png)");
+				$(".drop dd a.chuanshuo").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn22.png)");
+				$(".drop dd a.baigui").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn33.png)");
+			})
+			$('.drop dd a.chuanshuo').click(function(){
+				$(".drop dd a.chuanshuo").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn2.png)");
+				$(".drop dd a.shenhua").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn11.png)");
+				$(".drop dd a.baigui").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn33.png)");
+			})
+			$('.drop dd a.baigui').click(function(){
+				$(".drop dd a.baigui").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn3.png)");
+				$(".drop dd a.shenhua").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn11.png)");
+				$(".drop dd a.chuanshuo").css("background-image","url(https://hkb2020aly.xyz/ssh.hkb.sqgs/images/btn22.png)");
+			})
+			
+		});
+	</script>
+
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/util.js" type="module"></script> -->
+</body>
+</html>

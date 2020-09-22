@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ssh.hkb.sqgs.entities">
+
+    <class name="CartoonInfo" table="sqgs_cartooninfos">
+    
+        <id name="id" type="java.lang.Integer">
+            <column name="cartooninfos_id" />
+            <generator class="native" /><!-- 指定主键生成方式，native: 使用数据库本地方式,自增方式 -->
+        </id>
+        
+        <property name="title" type="java.lang.String" column="cartooninfos_title" length="30" not-null="true"></property>
+        
+        <property name="author" type="java.lang.String" column="cartooninfos_author" length="20" not-null="true"></property>
+        
+        <property name="date" type="java.lang.String" column="cartooninfos_date" length="20" not-null="true"></property>
+        
+        <property name="cover" type="text" column="cartooninfos_cover" not-null="true"></property>
+       
+        <property name="summary" type="java.lang.String" column="cartooninfos_summary" length="200" not-null="true"></property>
+        
+        <set name="images" table="sqgs_cartoonimages" inverse="true" lazy="true">
+            <key column="cartooninfos_id"></key>
+            <one-to-many class="CartoonImage"/>
+        </set>
+       
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+    <constant name="struts.devMode" value="true"></constant>
+    
+    <!-- package里面要继承json-default，result里面的type要写json，param里面还可以过滤不要的元素 -->
+    <package name="default" namespace="/" extends="json-default,struts-default"><!-- json-default继承了struts-default -->
+       
+        <!--全局的结果页面 -->
+        <global-results>
+            <result name="error">/html/error.html</result>
+        </global-results>
+        
+        <action name="listStoryByKind" class="ssh.hkb.sqgs.actions.StoryAction" method="listStoryByKind">
+            <!-- name: .action返回的字符串对应的值，data是.action里面的内置属性 -->
+            <result name="list" type="json">
+                <!-- 这就是返回给请求的数据（data） -->
+                <param name="root">data</param>
+            </result>
+        </action>
+        
+        <action name="listStoryByTitle" class="ssh.hkb.sqgs.actions.StoryAction" method="listStoryByTitle">
+            <result name="list" type="json">
+                <param name="root">data</param>
+            </result>
+        </action>
+        
+        <action name="getStory" class="ssh.hkb.sqgs.actions.StoryAction" method="getStory">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+        </action>
+        
+        <action name="listVideos" class="ssh.hkb.sqgs.actions.VideoAction" method="listVideos">
+            <result name="list" type="json">
+                <param name="root">data</param>
+            </result>
+        </action>
+        
+        <action name="listCartoonInfo" class="ssh.hkb.sqgs.actions.CartoonInfoAction" method="listCartoonInfo">
+            <result name="list" type="json">
+                <param name="root">data</param>
+            </result>
+        </action>
+        
+        <action name="listCartoonImageByInfoId" class="ssh.hkb.sqgs.actions.CartoonImageAction" 
+            method="listCartoonImageByInfoId">
+            <result name="list" type="json">
+                <param name="root">data</param>
+            </result>
+        </action>
+        
+        <!-- 
+        <action name="help" class="ssh.hkb.sqgs.actions.HelpAction" method="insertHelp">
+            <result name="success" type="redirect">/html/help.html</result>
+        </action>
+         -->
+    </package>
+
+</struts>    

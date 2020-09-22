@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>文章</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/story.css">
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light white" >
+		<div class="nav-container">
+			<!-- <a class="navbar-brand" href="#"> --><img src="../images/logo.png" width="80" height="80"><!-- </a> -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			<div class="collapse navbar-collapse fl-r" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a href="index.html">首页<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="link" href="story.html">文章</a>
+					</li>
+					<li class="nav-item">
+						<a href="cartoon.html">漫画</a>
+					</li>
+					<li class="nav-item">
+						<a href="videos.html">视频</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section class="kindcon-bj">
+		<div class="article" id="article">
+			<div class="art-left"></div>
+			<div class="art-right"></div>
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		window.onload = function() {
+		     var id = location.search.substr(1); // 从location对象中的search属性得到地址栏里 ? 后面的参数
+		     //alert(id);
+		     $.ajax({
+		            type: "post",
+		            dataType: "json",
+		            url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/getStory",
+		            data: {
+		                id: id
+		            },
+		            cache: false,
+		            success: function(data) {
+		                if (null != data) {
+		                    var data = JSON.parse(data);
+		                    //alert(data.rows.length); 
+		                    // alert(data.rows.id + data.rows.image + data.rows.pageNum 
+		                            // + data.rows.info.title + data.rows.info.cover);
+		                            
+		                    // var oContent = document.querySelector("#article");
+								$("#article").empty();
+								$("#article").append("<div class='art-left'><img src='https://hkb2020aly.xyz/ssh.hkb.sqgs/images/" +
+		                    			data.image + "'><p>"+
+		                    			data.title + "</p></div><div class='art-right'><p>"+ 
+		                    			data.story + "</p></div>");
+								//alert(data.image +data.title + data.story )
+		                    	// var str = "";
+		                    	// for (let i = 0; i < data.rows.length; i++) {
+		                    	// 	str += "<div class='art-left'><img src='https://hkb2020aly.xyz/ssh.hkb.sqgs/images/" +
+		                    	// 		data.image + "'><p>"+
+		                    	// 		data.title + "</p></div><div class='art-right'><p>"+ 
+		                    	// 		data.story + "</p></div>";
+		                    	// }
+		                    	// $("#article").empty();
+		                    	// oContent.innerHTML = str;
+		                    	// console.log(str)
+		                    
+		                }
+		            },
+		            error: function(xhr, type, errorThrown) {
+		                alert("服务器异常！");
+		            }
+		        });
+		    }
+			
+	</script>
+	
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/util.js" type="module"></script> -->
+</body>
+</html>

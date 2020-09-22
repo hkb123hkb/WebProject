@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 配置自动扫描的包 -->
+	<!-- <context:component-scan base-package="ssh.hkb.sqgs"></context:component-scan> -->
+
+	<bean id="storyDao" class="ssh.hkb.sqgs.dao.impl.StoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="cartoonInfoDao" class="ssh.hkb.sqgs.dao.impl.CartoonInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="cartoonImageDao" class="ssh.hkb.sqgs.dao.impl.CartoonImageDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="videoDao" class="ssh.hkb.sqgs.dao.impl.VideoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="storyService" class="ssh.hkb.sqgs.services.StoryService">
+		<property name="storyDao" ref="storyDao"></property>
+	</bean>
+	
+	<bean id="cartoonInfoService" class="ssh.hkb.sqgs.services.CartoonInfoService">
+		<property name="cartoonInfoDao" ref="cartoonInfoDao"></property>
+	</bean>
+	
+	<bean id="cartoonImageService" class="ssh.hkb.sqgs.services.CartoonImageService">
+		<property name="cartoonImageDao" ref="cartoonImageDao"></property>
+	</bean>
+	
+	<bean id="videoService" class="ssh.hkb.sqgs.services.VideoService">
+		<property name="videoDao" ref="videoDao"></property>
+	</bean>
+
+	<bean id="storyAction" class="ssh.hkb.sqgs.actions.StoryAction"
+		scope="prototype">
+		<property name="storyService" ref="storyService"></property>	
+	</bean>
+	
+	<bean id="cartoonInfoAction" class="ssh.hkb.sqgs.actions.CartoonInfoAction" 
+		scope="prototype">
+		<property name="cartoonInfoService" ref="cartoonInfoService"></property>
+	</bean>
+	
+	<bean id="cartoonImageAction" class="ssh.hkb.sqgs.actions.CartoonImageAction" 
+		scope="prototype">
+		<property name="cartoonImageService" ref="cartoonImageService"></property>
+	</bean>
+	
+	<bean id="videoAction" class="ssh.hkb.sqgs.actions.VideoAction" 
+		scope="prototype">
+		<property name="videoService" ref="videoService"></property>
+	</bean>
+
+</beans>

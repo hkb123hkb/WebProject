@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test.html</title>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="referrer" content="no-referrer">
+    
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    window.onload = function() {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/listStoryByKind",
+            data: {
+            	kind: "中外神话",
+                currentPage: 1,
+                pageSize: 6
+            },
+            cache: false,
+            success: function(data) {
+                if (null != data) {
+                    var data = JSON.parse(data);
+                    alert(eval(data).rows.length);  
+                    alert(data.rows[0].id + data.rows[0].kind + data.rows[0].title 
+                    		+ data.rows[0].image + data.rows[0].story);
+                    for (var i = 0; i < data.rows.length; i++) {
+                        $("#test").append("<a href=\"image.html?" 
+					   + data.rows[i].id 
+					   + "\"><img src=\"images/" 
+                        		   + data.rows[i].image 
+                        		   + "\"></a>");   
+                    	$("#test").append("<p>" 
+                                + data.rows[i].story 
+                                + "</p>");   
+                    }
+                }
+            },
+            error : function(xhr, type, errorThrown) {
+                alert("服务器异常！");
+            }
+        }); 
+        
+    	/*$.ajax({
+            type: "post",
+            dataType: "json",
+            url: "http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/listVideos",
+            data: {
+                currentPage: 1,
+                pageSize: 3
+            },
+            cache: false,
+            success: function(data) {
+                if (null != data) {
+                    var data = JSON.parse(data);
+                    alert(eval(data).rows.length);  
+                    alert(data.rows[0].id + data.rows[0].title + data.rows[0].summary
+                            + data.rows[0].image + data.rows[0].video);
+                    for (var i = 0; i < data.rows.length; i++) {
+                        $("#test").append("<img src=\"http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/images/" 
+                                   + data.rows[i].image 
+                                   + "\"/>");
+                        $("#test").append("<video src=\"http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/videos/" 
+                                + data.rows[i].video 
+                                + "\" preload=\"auto\" controls=\"controls\" autoplay=\"autoplay\"></video>");
+                    }
+                }
+            },
+            error : function(xhr, type, errorThrown) {
+                alert("服务器异常！");
+            }
+        }); */
+        
+    	/* $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "http://localhost:8080/ssh.hkb.sqgs/listCartoonInfo",
+            data: {
+                currentPage: 1,
+                pageSize: 4
+            },
+            cache: false,
+            success: function(data) {
+                if (null != data) {
+                    var data = JSON.parse(data);
+                    alert(typeof(data.rows[0].id));
+                    alert(data.rows.length);
+                    alert(data.rows[0].id + data.rows[0].title + data.rows[0].author
+                            + data.rows[0].date + data.rows[0].cover + data.rows[0].summary); 
+                    for (var i = 0; i < data.rows.length; i++) {
+                    	$("#test").append("<a href=\"image.html?infoId=" + data.rows[i].id + "\"><img src=\"covers/" 
+                                + data.rows[i].cover
+                                + "\"></a>");
+                        $("#test").append("<a href=\"image.html?" + data.rows[i].id + "\"><img src=\"covers/" 
+                                        + data.rows[i].cover
+                                        + "\"></a>");
+                        $("#test").append("<span>" 
+                        		+ data.rows[i].summary 
+                        		+ "</span>");
+                    }
+                }
+            },
+            error : function(xhr, type, errorThrown) {
+                alert("服务器异常！");
+            }
+        }); */
+        
+    	/* $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "http://localhost:8080/ssh.hkb.sqgs/listCartoonImageByInfoId",
+            data: {
+                infoId: 2,
+                currentPage: 1,
+                pageSize: 5
+            },
+            cache: false,
+            success: function(data) {
+                if (null != data) {
+                    var data = JSON.parse(data);
+                    //alert(data.rows.length); 
+                    alert(data.rows[0].id + data.rows[0].image + data.rows[0].pageNum 
+                            + data.rows[0].info.title + data.rows[0].info.cover);
+                            
+                    $("#cover").append("<img src=\"covers/" 
+                                    + data.rows[0].info.cover 
+                                    + "\">");
+                    for (var i = 0; i < data.rows.length; i++) {
+                        $("#test").append("<img src=\"cartoonimages/" 
+                                + data.rows[i].image 
+                                + "\">");
+                    }
+                }
+            },
+            error : function(xhr, type, errorThrown) {
+                alert("服务器异常！");
+            }
+        }); */
+        
+    	/*$.ajax({
+            type: "post",
+            dataType: "json",
+            url: "http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/getStory",
+            data: {
+                id: 2
+            },
+            cache: false,
+            success: function(data) {
+                if (null != data) {
+                    var data = JSON.parse(data);
+                    //alert(data);
+                    $("#test").append(data.id + "</br>"
+                        		+ data.kind + "</br>"
+                        		+ data.title  + "</br>"
+                        		+ "<img src=\"images/" + data.image + "\">" + "</br>"
+                        		+ data.story + "</br>");
+                }
+            },
+            error : function(xhr, type, errorThrown) {
+                alert("服务器异常！");
+            }
+        });*/
+    }  
+    </script>
+
+  </head>
+  
+  <body>
+  
+    <h1>test page</h1>
+    <div id="cover"></div>
+    <div id="test"></div>
+  
+  </body>
+</html>

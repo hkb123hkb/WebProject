@@ -1,0 +1,372 @@
+.body{
+	font-family: 微软雅黑;
+}
+a.logo{
+	display: block;
+	width: 100%;
+	padding-left: 60px;
+}
+.navbar{
+	/*background: #444243;*/
+	padding:0;
+}
+.nav-container{
+	margin-right: 0;
+	width: 100%;
+	padding: 0;
+}
+nav .nav-container a.link{
+	color: #fff;
+}
+.nav-item{
+	padding: .5rem 1rem;
+}
+.b5{
+	background: #b5b5b5;
+}
+.drop dd a.ddclick{
+	color:red;
+	display: block;
+}
+/*KIND  --content*/
+.kindcon-bj{
+	background: #000;
+	overflow: hidden;
+}
+.cont{
+	padding-bottom: 90px;
+	padding-top: 40px;
+	/*padding-left:50px;*/
+	/*padding-right: 50px;*/
+	/*background: #f3f1f2;*/
+	overflow: hidden;
+	width: 1458px;
+    margin: 0 auto;
+}
+.cont-right{
+	/*float: left;*/
+	overflow: hidden;
+}
+.cont-left{
+	float: left;
+	margin-top: 30px;
+}
+.change{
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+.detail{
+	/* width: 1200px; */
+	overflow: hidden;
+	float: left;
+	/*margin-top: 70px;*/
+}
+.cont-row{
+	float: left;
+	/*margin-top: 40px;*/
+}
+.detail a{
+	display: inline-block;
+	margin: 30px 30px;
+	float: left;
+}
+.detail img{
+	width: 340px;
+    height: 540px;
+    float: left;
+}
+.drop{
+	line-height: 38px;
+	font-weight: 900;
+	font-size: 25px;
+	margin-top: 30px;;
+}
+.drop dd a{
+	width: 180px;
+	height: 75px;
+}
+.drop dd a.shenhua{
+	background: url(http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/images/btn11.png);
+	background-size:100%;
+	display: block; 
+}
+.drop dd a.shenhua1{
+	background: url(http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/images/btn1.png);
+	background-size:100%;
+	display: block; 
+}
+.drop dd a.chuanshuo{
+	background: url(http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/images/btn22.png);
+	background-size:100%;
+	display: block; 
+}
+.drop dd a.chuanshuo1{
+	background: url(http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/images/btn2.png);
+	background-size:100%;
+	display: block; 
+}
+.drop a.baigui{
+	background: url(http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/images/btn33.png);
+	background-size:100%;
+	display: block; 
+}
+.drop a.baigui1{
+	background: url(http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/images/btn3.png);
+	background-size:100%;
+	display: block; 
+}
+.sousuo{
+	width: 80%;
+	margin-left: 30px;
+}
+.sousuo input{
+	width: 70%;
+	height: 40px;
+	background: #fff;
+	border:1px solid #7f0611;
+	border-radius: 5px;
+}
+.sousuo button{
+	width: 10%;
+    height: 40px;
+    background: #7f0611;
+    color: #000;
+    border-radius: 2px;
+    border: 0;
+    margin-left: -10px;
+}
+
+/*article  --content*/
+.article{
+	padding: 50px;
+	overflow: hidden;
+}
+.art-left{
+	float: left;
+	margin-right: 50px;
+	width:300px;
+}
+.art-left img{
+	width: 300px;
+	height: 400px;
+}
+.art-left p{
+	font-size: 25px;
+	color: #fff;
+	text-align: center;
+	width: 300px;
+	margin-top: 20px;
+}
+.art-right{
+	float: left;
+	width: 74%;
+}
+.art-right p{
+	color: #fff;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 1px;
+    text-align:justify;
+}
+.art-right img{
+	width: 20% ;
+	margin: 40px 2%;
+}
+.cartoonImage{
+	padding: 50px;
+	overflow: hidden;
+	width: 90%;
+	margin: 0 auto;
+}
+.cartoonImage-tit{
+	color: #fff;
+	font-size: 29px;
+	/* width: 145px; */
+	margin: 20px;	
+}
+#image image{
+	width:100%;
+	margin: 0 auto;
+}
+.inline{
+	display: inline-block;
+	margin-left: 31%;
+}
+/*cartoonS*/
+
+.cartoon-con{
+	width: 100%;
+	margin:0 auto;
+	padding-top: 50px;
+	padding-bottom: 80px;
+	background: #000;
+}
+.cartoon-box{
+	width: 100%;
+}
+.cartoon-tit{
+	width: 100%;
+	background: url(../images/bj.jpg);
+	height: 220px;
+    padding-top: 146px;
+}
+.cartoon-tit text{
+	padding: 10px 10px 10px 10px;
+    background: rgba(0,0,0,0.5);
+    /* margin-top: 40px; */
+    margin-left: 40px;
+    display: block;
+    color: #fff;
+    font-size: 25px;
+    width: 100px;
+    font-weight: 700;
+    text-align: center;
+}
+.vidcontainer{
+	/*margin:30px 0;*/
+	overflow: hidden;
+}
+.vidrow{
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+.vidcol-sm{
+	float: left;
+	width: 20%;
+    	margin:2% 2.45%;
+}
+.description{
+	/*width: 100%;*/
+	position: relative;
+	/*text-align: center;*/
+	cursor: pointer;
+}
+.description img.cartoonpic{
+	width: 100%;
+	height: 440px;
+}
+.little-des{
+	/*position: absolute;
+	top: 350px;
+    left: 0;*/
+    width: 100%;
+    padding: 10px 20px;
+	/*background: rgba(0,0,0,0.5);*/
+	/*text-align: center;*/
+}
+.little-des .title{
+	font-size: 20px;
+	color: #fff;
+	font-weight: bold;
+	margin-bottom: 0;
+	text-align:center;
+}
+.little-des .con{
+	font-size: 13px;
+    color: #ebebeb;
+    margin-top: 10px;
+}
+.more-des{
+	padding: 30px 10px;
+    position: absolute; 
+    top: 0px;
+    left: 0;
+    /*z-index: 999;*/
+     display: none; 
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 440px;
+}
+.more-des p{
+	font-size: 18px;
+	color: #ebebeb;
+	width: 80%;
+	margin:40px auto;
+	height: 200px;
+	cursor: pointer;
+}
+.more-des img{
+	width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 370px;
+    left: 85%;
+}
+.description:hover .more-des{
+	/*position: absolute;
+	top: 0;*/
+	transition: 1s;
+	display: block;
+	border: 3px dashed #7f0611;
+}
+#return-top{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+/*videos*/
+.VIDEOSa{
+	padding:0;
+    background: #000;
+    overflow: hidden;
+	padding-bottom: 70px;
+}
+.vidcont{
+    margin-left: 50px;
+    margin-top: 60px;
+    overflow: hidden;
+}
+.vidtext{
+	width: 55%;
+    float: left;
+    padding: 20px 42px;
+	color: #fff;
+}
+.vidtext p.title{
+	font-size: 35px;
+	/*font-weight: bold;*/
+}
+.vidtext p.text{
+	font-size: 22px;
+	margin-top: 40px;
+}
+.vidcont img.vidtu{
+	border: 5px solid #7f0611;
+	box-shadow: 0px 0px 30px #888;
+}
+/* 分页 */
+#fanye{
+	margin-bottom: 30px;
+	text-align: center;
+}
+#fanye span{
+	width: 30px;
+	height: 30px;
+	line-height: 26px;
+	text-align: center;
+	border: 1px solid #666;
+	cursor: pointer;
+	display: inline-block;
+	margin: 5px;
+	color:#888;
+}
+#fanye span.page{
+	width: 40px;
+	height: 30px;
+	display: inline-block;
+}
+#fanye span.page:hover{
+	border:1px solid #a02d35;
+}
+#fanye span.checked{
+	border-color: #a02d35;
+	background-color: #a02d35;
+	color: #ffffff;
+}
+.forbid{
+	/* pointer-events: none; */
+	background-color: rgba(0, 0, 0, 0.1);
+	color: rgba(0, 0, 0, 0.2);
+}

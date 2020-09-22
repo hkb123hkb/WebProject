@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>image.html</title>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="referrer" content="no-referrer">
+    
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    window.onload = function() {
+    	var id = location.search.substr(1); // 从location对象中的search属性得到地址栏里 ? 后面的参数       【接参】
+               
+    	$.ajax({
+            type: "post",
+            dataType: "json",
+            url: "http://hkb2020aly.xyz:8080/ssh.hkb.sqgs/getStory",
+            data: {
+                id: id
+            },
+            cache: false,
+            success: function(data) {
+                if (null != data) {
+                    var data = JSON.parse(data);
+                    
+                    alert(data.id + data.image + data.kind 
+                            + data.title + data.story);
+		}
+            },
+            error : function(xhr, type, errorThrown) {
+                alert("服务器异常！");
+            }
+        });
+    }
+    </script>
+
+  </head>
+  
+  <body>
+    This is my HTML page. <br>
+    
+    <span></span>
+    <div id="cover"></div>
+    <div id="test"></div>
+    
+  </body>
+</html>

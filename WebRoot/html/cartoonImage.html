@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>漫画</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/story.css">
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light white" >
+		<div class="nav-container">
+			<!-- <a class="navbar-brand" href="#"> --><img src="../images/logo.png" width="80" height="80"><!-- </a> -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			<div class="collapse navbar-collapse fl-r" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a href="index.html">首页<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a href="story.html">文章</a>
+					</li>
+					<li class="nav-item">
+						<a class="link" href="cartoon.html">漫画</a>
+					</li>
+					<li class="nav-item">
+						<a href="videos.html">视频</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section class="kindcon-bj">
+		<div class="cartoonImage">
+			<!-- <div class="art-left">
+				<img src="../images/a2.jpg">
+				<p>
+					精卫填海<br>
+					经典传说
+				</p>
+			</div>
+			<div class="art-right">
+				<img src= "../images/1.jpg">
+				<img src= "../images/1.jpg">
+				<img src= "../images/1.jpg">
+			</div> -->
+			
+			<div class="cartoonImage-tit">
+				<span id="title"></span>
+				<div id="fanye" class="inline"></div>
+			</div>
+			<div id="image">
+				<img src="../images/1.jpg"/>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript">
+		var currentPage;
+		var pageCount;
+		var infoId = location.search.substr(1);
+
+		window.onload = function() {
+			
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+				data: {
+					infoId:infoId,
+					currentPage: 1,
+					pageSize: 4
+				},
+				success: function(data) {
+					
+					var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+					// console.log(doc);
+					currentPage = data.currentPage;
+					pageCount = data.pageCount;
+					$("#fanye").empty();
+					$("#fanye").append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+						"<span onclick='changePageupdown()' class='page'>></span>");
+					renderData(data);
+				}
+			});
+		}
+		
+		var oContent = document.querySelector("#image");
+		function renderData(data) {
+			var str = "";
+			for (let i = 0; i < data.rows.length; i++) {
+				str += "<img src='https://hkb2020aly.xyz/ssh.hkb.sqgs/cartoonimages/" +
+					data.rows[i].image + "'>";
+			}
+			$("#title").empty();
+			$("#title").html(data.rows[0].info.title);
+			$("#image").empty();
+			oContent.innerHTML = str;
+			// console.log(str)
+		}
+		
+		function changePageupdown() {
+			currentPage = currentPage + 1;
+			// alert(pageCount);
+			if (currentPage < pageCount) {
+				$.ajax({
+					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+					data: {
+						infoId:infoId,
+						currentPage: currentPage,
+						pageSize: 4,
+					},
+					success: function(data) {
+						var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+						// console.log(doc);
+						currentPage = data.currentPage;
+						$("#fanye").empty();
+						$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+							"<span onclick='changePageupdown()' class='page next'>></span>");
+						renderData(data);
+					}
+				});	
+			}
+			else if (currentPage == pageCount) {
+					$.ajax({
+						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+						data: {
+							infoId:infoId,
+							currentPage: currentPage,
+							pageSize: 4,
+						},
+						success: function(data) {
+							var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+							// console.log(doc);
+							currentPage = data.currentPage;
+							$("#fanye").empty();
+							$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+							currentPage +"</span>"+
+								"<span onclick='changePageupdown()' class='page forbid'>></span>");
+							renderData(data);
+						},
+					});
+			}
+			else {
+				currentPage = currentPage - 1;
+				alert("已经是最后一页啦！");
+			}
+
+		}
+	
+		function changePageup() {
+			currentPage = currentPage - 1;
+			// alert(currentPage);
+			if (currentPage > 1) {
+				$.ajax({
+					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+					data: {
+						infoId:infoId,
+						currentPage: currentPage,
+						pageSize: 4,
+					},
+					success: function(data) {
+						var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+						// console.log(doc);
+						currentPage = data.currentPage;
+						$("#fanye").empty();
+						$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+							"<span onclick='changePageupdown()' class='page'>></span>");
+						renderData(data);
+					}
+				});
+			}
+			else if (currentPage == 1) {
+				$.ajax({
+					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listCartoonImageByInfoId",
+					data: {
+						infoId:infoId,
+						currentPage: currentPage,
+						pageSize: 4,
+					},
+					success: function(data) {
+						var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+						// console.log(doc);
+						currentPage = data.currentPage;
+						$("#fanye").empty();
+						$('#fanye').append("<span onclick='changePageup()' class='page forbid'><</span>" +"<span class='checked'>"+
+						currentPage +"</span>"+
+							"<span onclick='changePageupdown()' class='page'>></span>");
+						renderData(data);
+					}
+				});
+			}
+			else {
+				currentPage = currentPage + 1;
+				return;
+			}
+		}
+	
+	</script>
+	
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/util.js" type="module"></script> -->
+</body>
+</html>

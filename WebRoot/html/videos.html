@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>视频</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/story.css">
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light white" >
+		<div class="nav-container">
+			<!-- <a class="navbar-brand" href="#"> --><img src="../images/logo.png" width="80" height="80"><!-- </a> -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			<div class="collapse navbar-collapse fl-r" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a href="index.html">首页<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a href="story.html">文章</a>
+					</li>
+					<li class="nav-item">
+						<a href="cartoon.html">漫画</a>
+					</li>
+					<li class="nav-item">
+						<a href="videos.html" class="link">视频</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section class="VIDEOSa">
+		<div id="videos" class="change">
+			<!--<div class="vidcont">
+				<div class="vid">
+					<div class="video">
+						<div class="videolist l"></div>
+						<div class="videos"></div>
+					</div>
+				</div>
+				<div class="vidtext">
+					<p class="title"></p>
+					<p class="text"></p>
+				</div>
+			</div>
+			<div class="vidcont">
+				<div class="vid">
+					<div class="video">
+						<div class="videolist l"></div>
+						<div class="videos"></div>
+					</div>
+				</div>
+				<div class="vidtext">
+					<p class="title"></p>
+					<p class="text"></p>
+				</div>
+			</div>	-->	
+		</div>
+		<div id="fanye"></div>
+		<script type="text/javascript">
+			function close1() {
+				var v = document.getElementById('video'); //获取视频节点
+				$('.videos').hide(); //点击关闭按钮关闭暂停视频
+				v.pause();
+				$('.videos').html();
+			}
+		</script>
+		<script type="text/javascript">
+			var currentPage;
+			var pageCount;
+			
+			window.onload = function() {
+				$.ajax({
+					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+					data: {
+						currentPage: 1,
+						pageSize: 3,
+					},
+					success: function(data) {
+						var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+						// console.log(doc);
+						currentPage = data.currentPage;
+						pageCount = data.pageCount;
+						$("#fanye").empty();
+						$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+							currentPage +"</span>"+
+							"<span onclick='changePageupdown()' class='page'>></span>");
+						renderData(data);
+					}
+				});
+			}
+			var oContent = document.querySelector("#videos");
+			function renderData(data) {
+				var str = "";
+				for (let i = 0; i < data.rows.length; i++) {
+					str += "<div class='vidcont'><div class='vid'><div class='video'><div class='videolist l'><img class='vidtu' src='https://hkb2020aly.xyz/ssh.hkb.sqgs/images/"+
+     						data.rows[i].image + "' width='530px' height='320px'/><img src='../images/play.png' class='videoed' ipath='https://hkb2020aly.xyz/ssh.hkb.sqgs/videos/" + 
+     						data.rows[i].video + "'/></div><div class='videos'></div></div></div><div class='vidtext'><p class='title'>" + 
+     						data.rows[i].title + "</p ><p class='text'>" +
+    	 					data.rows[i].summary + "</p ></div></div>";				
+				}
+				$("#videos").empty();
+				oContent.innerHTML = str;
+				// console.log(str)
+				$('.videoed').each(function() { //遍历视频列表
+					$(this).click(function() { //这个视频被点击后执行
+						// var img = $(this).attr('vpath');//获取视频预览图
+						var video = $(this).attr('ipath'); //获取视频路径
+						//alert(video);
+						// console.log(video)
+						$('.videos').html("<video id=\"video\" style='width: 640px' src='" + video +
+							"' preload=\"auto\" controls=\"controls\" autoplay=\"autoplay\" type=\"video\"></video><img onClick=\"close1()\" class=\"vclose\" src=\"../images/gb.png\" width=\"25\" height=\"25\"/>"
+						);
+						$('.videos').show();
+					});
+				});
+			}
+			
+			
+			function changePageupdown() {
+				currentPage = currentPage + 1;
+				// alert(pageCount);
+				if (currentPage < pageCount) {
+					$.ajax({
+						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+						data: {
+							currentPage: currentPage,
+							pageSize: 3,
+						},
+						success: function(data) {
+							var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+							// console.log(doc);
+							currentPage = data.currentPage;
+							$("#fanye").empty();
+							$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+							currentPage +"</span>"+
+								"<span onclick='changePageupdown()' class='page next'>></span>");
+							renderData(data);
+						}
+					});	
+				}
+				else if (currentPage == pageCount) {
+						$.ajax({
+							url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+							data: {
+								currentPage: currentPage,
+								pageSize: 3,
+							},
+							success: function(data) {
+								var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+								// console.log(doc);
+								currentPage = data.currentPage;
+								$("#fanye").empty();
+								$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+								currentPage +"</span>"+
+									"<span onclick='changePageupdown()' class='page forbid'>></span>");
+								renderData(data);
+							},
+						});
+				}
+				else {
+					currentPage = currentPage - 1;
+					return;
+				}
+
+			}
+		
+			function changePageup() {
+				currentPage = currentPage - 1;
+				// alert(currentPage);
+				if (currentPage > 1) {
+					$.ajax({
+						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+						data: {
+							currentPage: currentPage,
+							pageSize: 3,
+						},
+						success: function(data) {
+							var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+							// console.log(doc);
+							currentPage = data.currentPage;
+							$("#fanye").empty();
+							$('#fanye').append("<span onclick='changePageup()' class='page'><</span>" +"<span class='checked'>"+
+							currentPage +"</span>"+
+								"<span onclick='changePageupdown()' class='page'>></span>");
+							renderData(data);
+						}
+					});
+				}
+				else if (currentPage == 1) {
+					$.ajax({
+						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listVideos",
+						data: {
+							currentPage: currentPage,
+							pageSize: 3,
+						},
+						success: function(data) {
+							var data = JSON.parse(data); // 获取接口返回的数据 // then log it out
+							// console.log(doc);
+							currentPage = data.currentPage;
+							$("#fanye").empty();
+							$('#fanye').append("<span onclick='changePageup()' class='page forbid'><</span>" +"<span class='checked'>"+
+							currentPage +"</span>"+
+								"<span onclick='changePageupdown()' class='page'>></span>");
+							renderData(data);
+						}
+					});
+				} 
+				else {
+					currentPage = currentPage + 1;
+					return;
+				}
+
+			}
+		</script>
+		
+	</section>
+	
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- <script src="../js/util.js" type="module"></script> -->
+</body>
+</html>
