@@ -32,4 +32,17 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext*.xml</param-value>
   </context-param>
+    
+    <!--允许跨域 开始-->  
+    <httpProtocol>
+      <customHeaders>
+        <add name="Access-Control-Allow-Origin" value="*" />
+        <add name="Access-Control-Allow-Credentials" value="true" />
+        <add name="Access-Control-Allow-Headers" value="Content-Type" />
+        <add name="Content-Security-Policy" value="upgrade-insecure-requests" />
+        <add name="Access-Control-Allow-Methods" value="GET, POST, PUT, DELETE, OPTIONS" />
+      </customHeaders>
+    </httpProtocol>
+    <!--允许跨域 结束-->
+    
 </web-app>
