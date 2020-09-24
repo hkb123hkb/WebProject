@@ -52,10 +52,10 @@
 				</dl>
 			</div> 
 			<div class="cont-right">
-				<div class="sousuo">
+				<!--<div class="sousuo">
 					<input type="text" name="">
 					<button>搜索</button>
-				</div>
+				</div>-->
 				<div class="change"  id="shenhua" style="display: none;">
 				</div>
 				<div class="change"  id="chuanshuo" style="display: none;">
@@ -74,7 +74,7 @@
 			
 			$.ajax({
 				url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
-				dataType: "jsonp",
+				dataType: "json",
 				data: {
 					kind:"百鬼夜行",
 					currentPage: 1,
@@ -114,7 +114,7 @@
 			if (currentPage < pageCount) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
-					dataType: "jsonp",
+					dataType: "json",
 					data: {
 						kind:"百鬼夜行",
 						currentPage: currentPage,
@@ -135,7 +135,7 @@
 			else if (currentPage == pageCount) {
 					$.ajax({
 						url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
-						dataType: "jsonp",
+						dataType: "json",
 						data: {
 							kind:"百鬼夜行",
 							currentPage: currentPage,
@@ -165,7 +165,7 @@
 			if (currentPage > 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
-					dataType: "jsonp",
+					dataType: "json",
 					data: {
 						kind:"百鬼夜行",
 						currentPage: currentPage,
@@ -186,7 +186,7 @@
 			else if (currentPage == 1) {
 				$.ajax({
 					url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/listStoryByKind",
-					dataType: "jsonp",
+					dataType: "json",
 					data: {
 						kind:"百鬼夜行",
 						currentPage: currentPage,
