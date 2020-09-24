@@ -47,8 +47,7 @@
 		     var id = location.search.substr(1); // 从location对象中的search属性得到地址栏里 ? 后面的参数
 		     //alert(id);
 		     $.ajax({
-		            type: "post",
-		            dataType: "jsonp",
+		            dataType: "json",
 		            url: "https://hkb2020aly.xyz/ssh.hkb.sqgs/getStory",
 		            data: {
 		                id: id
